@@ -49,11 +49,20 @@
      <Compile Include="Assets\Scripts\BodyPartIdentifier.cs" />
      <Compile Include="Assets\Scripts\BodyPartsEnum.cs" />
      <Compile Include="Assets\Scripts\CoffinContentsManager.cs" />
+     <Compile Include="Assets\Scripts\FirstPersonCamera.cs" />
+     <Compile Include="Assets\Scripts\GrabberController.cs" />
      <Compile Include="Assets\Scripts\ObjectsIntersectingColliderTracker.cs" />
      <Compile Include="Assets\Scripts\Rotation.cs" />
+     <Compile Include="Assets\Scripts\RotesMcGoats.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{2662B409-6332-1E56-D797-C9025C53BDD6}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{4464F9EF-777D-E971-944B-0D2B43AA417D}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
