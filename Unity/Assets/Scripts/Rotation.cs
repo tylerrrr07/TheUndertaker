@@ -37,7 +37,6 @@ public class Rotation : MonoBehaviour {
 			//tr.Rotate(90.0f*Time.deltaTime, 0.0f, 45.0f*Time.deltaTime);
 		}
 
-
 		if ( Input.GetMouseButton(0) && !isGrabbed){
             RaycastHit hitInfo;
             Ray ray = Camera.main.ScreenPointToRay(centerOfScreen);
