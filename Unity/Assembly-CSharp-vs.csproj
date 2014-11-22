@@ -50,9 +50,11 @@
      <Compile Include="Assets\Scripts\BodyPartsEnum.cs" />
      <Compile Include="Assets\Scripts\CoffinContentsManager.cs" />
      <Compile Include="Assets\Scripts\FirstPersonCamera.cs" />
+     <Compile Include="Assets\Scripts\FixRigidBodyElasticity.cs" />
      <Compile Include="Assets\Scripts\GrabberController.cs" />
      <Compile Include="Assets\Scripts\ObjectsIntersectingColliderTracker.cs" />
      <Compile Include="Assets\Scripts\Rotation.cs" />
+     <Compile Include="Assets\Scripts\RotesMcGoats.cs" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/dev/TheUndertaker/Unity/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
