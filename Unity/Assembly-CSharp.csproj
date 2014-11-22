@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BodyPartIdentifier.cs" />
+     <Compile Include="Assets\Scripts\BodyPartsEnum.cs" />
      <Compile Include="Assets\Scripts\CoffinContentsManager.cs" />
      <Compile Include="Assets\Scripts\ObjectsIntersectingColliderTracker.cs" />
  <Reference Include="UnityEngine.UI">
