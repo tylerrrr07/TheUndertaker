@@ -27,8 +27,12 @@ public class CoffinContentsManager : MonoBehaviour {
             InBoundsCollider.NumberOfTorsosIntersecting == TargetNumberOfTorsos &&
             InBoundsCollider.NumberOfHeadsIntersecting == TargetNumberOfHeads)
         {
-            Debug.Log("Great Success!");
-            IsComplete = true;
+            this.GetComponent<MeshRenderer>().material.color = Color.blue;
+            //IsComplete = true;
+        }
+        else
+        {
+            this.GetComponent<MeshRenderer>().material.color = Color.red;
         }
 	}
 }
