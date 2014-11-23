@@ -11,12 +11,14 @@ public class Rotation : MonoBehaviour {
 	private bool collision = false;
     private Vector2 centerOfScreen;
     public List<GameObject> GrabbableObjects;
+    public List<GameObject> ColorableObjects;
     private Vector2 targetPosition;
     public GrabberController PlayerGrabberrController;
     public float ReachDistance = 5;
     public float ReachLength = 3.0f;
 
     public float GrabOffsetY = 1.0f;
+    private float grabDistance = 0f;
 
     public Color DefaultColor = Color.yellow;
     public Color GrabbedColor = Color.green;
@@ -45,17 +47,21 @@ public class Rotation : MonoBehaviour {
             {
                 RaycastHit hitInfo;
                 Ray ray = Camera.main.ScreenPointToRay(centerOfScreen);
-                Debug.DrawRay(ray.origin, ray.direction * 10);
+                Debug.DrawRay(ray.origin, ray.direction * ReachDistance);
                 if (Physics.Raycast(ray, out hitInfo, ReachDistance))
                 {
-                    Debug.Log(hitInfo.collider.transform.name);
+                    Debug.Log("Raycast Hit - " + hitInfo.collider.transform.name);
                     foreach (var GrabbableObject in GrabbableObjects)
                     {
-                        if (hitInfo.transform == GrabbableObject.transform)
+                        Debug.Log("Grabbable - " + GrabbableObject.transform.name);
+                        if (hitInfo.collider.transform.name == GrabbableObject.transform.name)
                         {
+                            Debug.Log("Grabbed!");
+                            grabDistance = hitInfo.distance;
                             isGrabbed = true;
                             PlayerGrabberrController.IsGrabbing = true;
                             TintGrabbables(GrabbedColor);
+                            rigidbody.isKinematic = true;
                             break;
                         }
                     }
@@ -72,15 +78,24 @@ public class Rotation : MonoBehaviour {
             {                
                 TintGrabbables(DefaultColor);
                 isGrabbed = false;
-                rb.useGravity = true;
+                //rb.useGravity = true;
+                rigidbody.isKinematic = false;
                 PlayerGrabberrController.IsGrabbing = false;
             }
         
 	}
 
+    void FixedUpdate()
+    {
+        if (isGrabbed && Input.GetMouseButton(0))
+        {
+            HandleGrabbed();
+        }
+    }
+
     private void TintGrabbables(Color color)
     {
-        foreach(var objectToTint in GrabbableObjects)
+        foreach(var objectToTint in ColorableObjects)
         {
             objectToTint.GetComponent<MeshRenderer>().material.color = color;
         }
@@ -89,16 +104,18 @@ public class Rotation : MonoBehaviour {
     private void HandleGrabbed()
     {
         
-        Vector3 temp = PlayerCamera.transform.position + PlayerCamera.transform.forward * ReachLength;
-        temp.y = temp.y + GrabOffsetY;
+        Vector3 temp = PlayerCamera.transform.position + PlayerCamera.transform.forward * grabDistance;
+        
         
         
         Debug.DrawLine(new Vector3(PlayerCamera.transform.position.x, targetPosition.y, PlayerCamera.transform.position.z), temp);
 
+        //tr.Translate(Vector3.Normalize(tr.position + temp));
+        //temp.y = targetPosition.y;
         tr.position = temp;
         //tr.rotation = new Quaternion(0.0f, PlayerCamera.transform.rotation.y, 0.0f, PlayerCamera.transform.rotation.w);
-        rb.useGravity = false;
-        rb.velocity = Vector3.zero;
+        //rb.useGravity = false;
+        //rb.velocity = Vector3.zero;
     }
 
 	void OnCollisionEnter() {

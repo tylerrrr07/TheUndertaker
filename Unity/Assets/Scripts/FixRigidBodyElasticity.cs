@@ -11,6 +11,6 @@ public class FixRigidBodyElasticity : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        //transform.localPosition = startPosition;
+        transform.localPosition = startPosition;
 	}
 }

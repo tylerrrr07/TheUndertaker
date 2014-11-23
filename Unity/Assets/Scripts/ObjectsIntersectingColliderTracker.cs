@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ObjectsIntersectingColliderTracker : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class ObjectsIntersectingColliderTracker : MonoBehaviour {
     public int NumberOfHeadsIntersecting = 0;
     public int NumberOfTorsosIntersecting = 0;
 
+    public List<GameObject> ObjectsIntersecting;
+
     public int NumberOfObjectsIntersecting
     {
         get { return NumberOfArmsIntersecting + NumberOfLegsIntersecting + NumberOfHeadsIntersecting + NumberOfTorsosIntersecting;  }
@@ -15,7 +18,7 @@ public class ObjectsIntersectingColliderTracker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        ObjectsIntersecting = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +32,7 @@ public class ObjectsIntersectingColliderTracker : MonoBehaviour {
 
         if (bodyPart != null)
         {
+            ObjectsIntersecting.Add(other.transform.gameObject);
             switch(bodyPart.BodyPart)
             {
                 case BodyParts.Arm:
@@ -53,6 +57,7 @@ public class ObjectsIntersectingColliderTracker : MonoBehaviour {
 
         if (bodyPart != null)
         {
+            ObjectsIntersecting.Remove(other.transform.gameObject);
             switch (bodyPart.BodyPart)
             {
                 case BodyParts.Arm:
